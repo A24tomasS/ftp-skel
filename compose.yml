@@ -1,6 +1,11 @@
 services:
   ftpserver:
     build: docker/ftpserver
+    volumes:
+      - ./docker/ftpserver/vsftpd.conf.json:/etc/vsftpd.conf
+      - ./docker/ftpserver/welcome.banner:/etc/welcome.banner
+      - ./docker/ftpserver/users.list:/etc/users.list
+      - ./docker/ftpserver/log.log:/var/log/vsftpd.log
     networks:
       rede_ftp:    
   cliente1:
@@ -13,9 +18,10 @@ services:
     hostname: cliente2
     networks:
       rede_ftp:
+
 networks:
   rede_ftp:
     driver: bridge
     ipam:
       config:
-        - subnet: 192.168.10.0/24    
+        - subnet: 192.168.10.0/24
