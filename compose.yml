@@ -6,6 +6,9 @@ services:
       - ./docker/ftpserver/welcome.banner:/etc/welcome.banner
       - ./docker/ftpserver/users.list:/etc/users.list
       - ./docker/ftpserver/log.log:/var/log/vsftpd.log
+
+      - ./docker/key/cert/vsftpd.pem:/etc/ssl/certs/vsftpd.pem
+      - ./docker/key/priv/vsftpd.pem:/etc/ssl/private/vsftpd.pem
     networks:
       rede_ftp:    
   cliente1:
